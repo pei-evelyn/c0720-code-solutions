@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 
 const omit = (source, keys) => {
-  const sourceCopy = source;
-  for (const keyName in sourceCopy) {
+  const newObj = {};
+  for (const keyName in source) {
     for (let i = 0; i < keys.length; i++) {
-      if (keyName === keys[i]) {
-        delete sourceCopy[keys[i]];
+      if (keyName !== keys[i]) {
+        newObj[keyName] = keyName;
       }
     }
   }
-  return sourceCopy;
+  return newObj;
 };
