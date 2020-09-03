@@ -2,18 +2,12 @@
 
 const chunk = (array, size) => {
   const containerArr = [];
-  const arrLength = array.length;
-  for (let i = 0; i < arrLength; i = i + size) {
-    if (size === i) {
-      containerArr.push(array.slice(i, size + i));
-    } else {
+  for (let i = 0; i < array.length; i += size) {
+    if (size > i) {
       containerArr.push(array.slice(i, size));
+    } else {
+      containerArr.push(array.slice(i, size + i));
     }
   }
   return containerArr;
 };
-
-// newArr = [undefined, null, 0]
-// i = 0 + 3
-// .i = 3
-// newArr = []

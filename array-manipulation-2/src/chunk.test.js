@@ -12,7 +12,7 @@ describe('chunk(array, size)', () => {
     expect(output).to.deep.equal([['foo', 'bar'], ['baz', 'qux']]);
   });
 
-  it('returns [undefined, null, 0, false, NaN, ""] in "chunks" of 3', () => {
+  it('returns [undefined, null, 0, false, NaN, "", undefined] in "chunks" of 3', () => {
     const output = chunk([undefined, null, 0, false, NaN, '', undefined], 3);
     expect(output).to.deep.equal([[undefined, null, 0], [false, NaN, ''], [undefined]]);
   });
