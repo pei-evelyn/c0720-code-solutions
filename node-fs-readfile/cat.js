@@ -2,21 +2,16 @@
 
 const fs = require('fs');
 
-const paths = [];
+let index = 2;
 
-for (let index = 2; index < process.argv.length; index++) {
-  paths.push(process.argv[index]);
-}
-
-const callbackReadFile = (err, data) => {
-  if (err) throw err;
-  console.log(data);
-};
-
-const readMe = () => {
-  for (let counter = 0; counter < paths.length; counter++) {
-    fs.readFile(paths[counter], 'utf8', callbackReadFile);
+const id = setInterval(() => {
+  if (index < process.argv.length) {
+    fs.readFile(process.argv[index], 'utf8', (err, data) => {
+      if (err) throw err;
+      console.log(data);
+      index += 1;
+    });
+  } else if (index === process.argv.length) {
+    clearInterval(id);
   }
-};
-
-setTimeout(readMe, 1000);
+}, 1000);
