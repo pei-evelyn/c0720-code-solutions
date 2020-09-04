@@ -13,7 +13,7 @@ const createNote = newNote => {
     const JSONString = JSON.stringify(JSONdata);
     fs.writeFile('./data.json', JSONString, err => {
       if (err) throw err;
-      console.log('Note Added');
+      console.log('Note added successfully.');
     });
   });
 };
