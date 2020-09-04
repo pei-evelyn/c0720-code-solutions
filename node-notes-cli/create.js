@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const create = newNote => {
+const createNote = newNote => {
   fs.readFile('./data.json', 'utf8', (err, data) => {
     if (err) throw err;
     const JSONdata = JSON.parse(data);
@@ -18,4 +18,4 @@ const create = newNote => {
   });
 };
 
-module.exports = create;
+module.exports = createNote;
