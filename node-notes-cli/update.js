@@ -7,11 +7,7 @@ const updateNote = (noteId, newNote) => {
     if (err) throw err;
     const JSONdata = JSON.parse(data);
     const noteList = JSONdata.notes;
-    for (const noteName in noteList) {
-      if (noteId === noteName) {
-        noteList[noteName] = newNote;
-      }
-    }
+    noteList[noteId] = newNote;
     const JSONString = JSON.stringify(JSONdata);
     fs.writeFile('./data.json', JSONString, err => {
       if (err) throw err;

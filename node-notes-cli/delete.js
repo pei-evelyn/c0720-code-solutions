@@ -7,11 +7,7 @@ const deleteNote = noteId => {
     if (err) throw err;
     const JSONdata = JSON.parse(data);
     const noteList = JSONdata.notes;
-    for (const noteName in noteList) {
-      if (noteId === noteName) {
-        delete noteList[noteName];
-      }
-    }
+    delete noteList[noteId];
     const JSONstring = JSON.stringify(JSONdata);
     fs.writeFile('./data.json', JSONstring, err => {
       if (err) throw err;
