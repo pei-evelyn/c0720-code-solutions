@@ -1,14 +1,9 @@
 /* eslint-disable no-unused-vars */
 
 const defaults = (target, source) => {
-  const targetKeys = Object.keys;
-  const sourceKeys = Object.keys;
-  for (let targetKeysIndex = 0; targetKeysIndex < targetKeys.length; targetKeysIndex++) {
-    for (let sourceKeysIndex = 0; sourceKeysIndex < sourceKeys.length; sourceKeysIndex++) {
-      if (targetKeys[targetKeysIndex] === sourceKeys[sourceKeysIndex]) {
-        return 'hello';
-      }
+  for (const key in source) {
+    if (target[key] === undefined) {
+      target[key] = source[key];
     }
   }
-  Object.assign(target, source);
 };

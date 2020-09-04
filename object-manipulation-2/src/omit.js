@@ -2,11 +2,9 @@
 
 const omit = (source, keys) => {
   const newObj = {};
-  for (const keyName in source) {
-    for (let i = 0; i < keys.length; i++) {
-      if (keyName !== keys[i]) {
-        newObj[keyName] = keyName;
-      }
+  for (const propName in source) {
+    if (keys.indexOf(propName) === -1) {
+      newObj[propName] = source[propName];
     }
   }
   return newObj;
