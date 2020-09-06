@@ -23,7 +23,6 @@ const createCards = () => {
       deckOfCards.push(card);
     }
   }
-  return deckOfCards;
 };
 
 const shuffleCards = () => {
@@ -34,7 +33,6 @@ const shuffleCards = () => {
     deckOfCards[i] = deckOfCards[randomNum];
     deckOfCards[randomNum] = currentCard;
   }
-  return deckOfCards;
 };
 
 const dealCards = () => {
@@ -42,20 +40,42 @@ const dealCards = () => {
     const cardsDrawn = deckOfCards.splice(0, 2);
     player.hand = cardsDrawn;
   });
-  return players;
 };
 
 const calculateScore = () => {
   players.forEach(player => {
-    let totalPoints = 0;
-    for (let i = 0; i < players.hand.length; i++) {
-      if (player.hand[i].rank === 'Ace') {
-        totalPoints += 11;
-      } else if (player.hand[i].rank === 'Jack') {
-        totalPoints += 10;
-      } else {
-        totalPoints += parseInt(player.hand[i].rank);
+    player.totalPoints = 0;
+    player.hand.forEach(card => {
+      switch (card.rank) {
+        case 'Ace':
+          player.totalPoints += 11;
+          break;
+        case 'King':
+        case 'Queen':
+        case 'Jack':
+          player.totalPoints += 10;
+          break;
+        default:
+          player.totalPoints += parseInt(card.rank);
       }
-    }
+    });
   });
 };
+
+const declareWinner = () => {
+  let winner = players[0].name;
+  let winningScore = players[0].totalPoints;
+  for (let i = 0; i < players.length; i++) {
+    if (players[i].totalPoints > winningScore) {
+      winner = players[i].name;
+      winningScore = players[i].totalPoints;
+    }
+  }
+  console.log(`${winner} wins with ${winningScore} points!`);
+};
+
+createCards();
+shuffleCards();
+dealCards();
+calculateScore();
+declareWinner();
