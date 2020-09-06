@@ -3,16 +3,17 @@
 /* eslint-disable no-unused-vars */
 console.log('Lodash is loaded:', typeof _ !== 'undefined');
 
-const players = [
-  { name: 'Fool' },
-  { name: 'Barp' },
-  { name: 'Meep' },
-  { name: 'Rawr' }
-];
+// const players = [
+//   { name: 'Fool' },
+//   { name: 'Barp' },
+//   { name: 'Meep' },
+//   { name: 'Rawr' }
+// ];
 
-const deckOfCards = [];
+// const deckOfCards = [];
 
 const createCards = () => {
+  const deckOfCards = [];
   const ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
   const suits = ['club', 'diamond', 'heart', 'spade'];
   for (let suitsIndex = 0; suitsIndex < suits.length; suitsIndex++) {
@@ -23,9 +24,10 @@ const createCards = () => {
       deckOfCards.push(card);
     }
   }
+  return deckOfCards;
 };
 
-const shuffleCards = () => {
+const shuffleCards = deckOfCards => {
   const totalCards = deckOfCards.length;
   for (let i = 0; i < totalCards; i++) {
     const randomNum = Math.floor(Math.random() * totalCards);
@@ -33,16 +35,18 @@ const shuffleCards = () => {
     deckOfCards[i] = deckOfCards[randomNum];
     deckOfCards[randomNum] = currentCard;
   }
+  return deckOfCards;
 };
 
-const dealCards = () => {
+const dealCards = (players, numOfCards, deckOfCards) => {
   players.forEach(player => {
-    const cardsDrawn = deckOfCards.splice(0, 2);
+    const cardsDrawn = deckOfCards.splice(0, numOfCards);
     player.hand = cardsDrawn;
   });
+  return players;
 };
 
-const calculateScore = () => {
+const calculateScore = players => {
   players.forEach(player => {
     player.totalPoints = 0;
     player.hand.forEach(card => {
@@ -60,9 +64,10 @@ const calculateScore = () => {
       }
     });
   });
+  return players;
 };
 
-const declareWinner = () => {
+const declareWinner = players => {
   let winner = players[0].name;
   let winningScore = players[0].totalPoints;
   for (let i = 0; i < players.length; i++) {
@@ -74,8 +79,10 @@ const declareWinner = () => {
   console.log(`${winner} wins with ${winningScore} points!`);
 };
 
-createCards();
-shuffleCards();
-dealCards();
-calculateScore();
-declareWinner();
+const startGame = (playerArray, numOfCardsPerHand) => {
+  const deckCreated = createCards();
+  const shuffledDeck = shuffleCards(deckCreated);
+  dealCards(playerArray, numOfCardsPerHand, shuffledDeck);
+  calculateScore(playerArray);
+  declareWinner(playerArray);
+};
