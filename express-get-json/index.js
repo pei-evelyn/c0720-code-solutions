@@ -1,4 +1,7 @@
+
 const express = require('express');
+const path = require('path');
+
 const app = express();
 
 const arr = [
@@ -21,6 +24,10 @@ const getHandler = function (req, res) {
 };
 
 app.get('/api/grades', getHandler);
+
+const publicPath = path.join(__dirname, 'public');
+
+app.use(express.static(publicPath));
 
 app.listen(3000, () => {
   // eslint-disable-next-line no-console
