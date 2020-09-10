@@ -6,25 +6,26 @@ const handleFormData = event => {
   const personName = formData.get('name');
   const personCourse = formData.get('course');
   const personGrade = formData.get('grade');
-  let newGrade = {};
-  newGrade.name = personName;
-  newGrade.course = personCourse;
-  newGrade.grade = personGrade;
-  newGrade = JSON.stringify(newGrade);
+  createGrade(personName, personCourse, personGrade);
   event.target.reset();
-
-  return newGrade;
 };
 
-const createGrade = grade => {
+const createGrade = (person, course, grade) => {
   $.ajax({
     method: 'POST',
-    headers: { dataType: 'application/json' },
-    data: grade,
-    url: '/api/grades',
+    url: '/',
+    dataType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      name: person,
+      course: course,
+      grade: grade,
+      id: nextId
+    }),
     success: data => {
       // eslint-disable-next-line no-console
-      console.log(data);
+      console.log('it worked!');
+      nextId++;
     },
     error: err => {
       console.error(err);
@@ -33,7 +34,5 @@ const createGrade = grade => {
 };
 
 const form = document.querySelector('form');
-form.addEventListener('submit', () => {
-  const grade = handleFormData();
-  createGrade(grade);
-});
+let nextId = 1;
+form.addEventListener('submit', handleFormData);
