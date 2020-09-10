@@ -11,15 +11,16 @@ const handleFormData = event => {
   newGrade.course = personCourse;
   newGrade.grade = personGrade;
   newGrade = JSON.stringify(newGrade);
-  createGrade(newGrade);
   event.target.reset();
+
+  return newGrade;
 };
 
-const createGrade = obj => {
+const createGrade = grade => {
   $.ajax({
     method: 'POST',
-    dataType: 'json',
-    data: obj,
+    headers: { dataType: 'application/json' },
+    data: grade,
     url: '/api/grades',
     success: data => {
       // eslint-disable-next-line no-console
@@ -32,4 +33,7 @@ const createGrade = obj => {
 };
 
 const form = document.querySelector('form');
-form.addEventListener('submit', handleFormData);
+form.addEventListener('submit', () => {
+  const grade = handleFormData();
+  createGrade(grade);
+});
