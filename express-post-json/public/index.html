@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Enter Info Here</h1>
+  <form action="/api/grades" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name">
+    <label for="course">Course:</label>
+    <input type="text" name="course" id="course">
+    <label for="course">Grade:</label>
+    <input type="number" name="grade" id="grade">
+    <input type="submit" value="Submit" id="submit">
+  </form>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+    integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+    crossorigin="anonymous"></script>
+  <script src="/main.js"></script>
+</body>
+</html>
