@@ -21,6 +21,11 @@ app.post('/api/grades', (req, res) => {
   res.status(201).json(content);
 });
 
+const path = require('path');
+const publicPath = path.join(__dirname, 'public');
+
+app.use(express.static(publicPath));
+
 app.listen(3000, () => {
   // eslint-disable-next-line no-console
   console.log('Listening on Port 3000!');
