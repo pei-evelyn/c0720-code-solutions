@@ -19,13 +19,11 @@ const createGrade = (person, course, grade) => {
     data: JSON.stringify({
       name: person,
       course: course,
-      grade: grade,
-      id: nextId
+      grade: grade
     }),
     success: data => {
       // eslint-disable-next-line no-console
       console.log('it worked!');
-      nextId++;
     },
     error: err => {
       console.error(err);
@@ -34,5 +32,4 @@ const createGrade = (person, course, grade) => {
 };
 
 const form = document.querySelector('form');
-let nextId = 1;
 form.addEventListener('submit', handleFormData);

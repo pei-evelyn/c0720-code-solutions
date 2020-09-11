@@ -6,7 +6,7 @@ const grades = [];
 let nextId = 1;
 
 app.get('/api/grades', (req, res) => {
-  res.json();
+  res.json(grades);
 });
 
 const jsonParser = express.json();
