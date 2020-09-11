@@ -13,7 +13,7 @@ const handleFormData = event => {
 const createGrade = (person, course, grade) => {
   $.ajax({
     method: 'POST',
-    url: '/',
+    url: '/api/grades',
     dataType: 'json',
     contentType: 'application/json',
     data: JSON.stringify({
