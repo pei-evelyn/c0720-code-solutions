@@ -40,7 +40,7 @@ app.use(express.json());
 
 app.post('/api/notes', (req, res) => {
   const note = req.body;
-  if (JSON.stringify(note) === '{}') {
+  if (typeof note.content === 'undefined') {
     res.status(400).json({
       error: 'content is a required field'
     });
@@ -96,7 +96,7 @@ app.put('/api/notes/:id', (req, res) => {
     res.status(400).json({
       error: 'id must be a positive integer'
     });
-  } else if (JSON.stringify(note) === '{}') {
+  } else if (typeof note.content === 'undefined') {
     res.status(400).json({
       error: 'content is a required field'
     });
