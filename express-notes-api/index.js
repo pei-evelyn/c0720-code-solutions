@@ -47,26 +47,60 @@ app.use(express.json());
 // handle post req to notes
 
 app.post('/api/notes', (req, res) => {
-  if (req.path === '/api/notes') {
-    const note = req.body;
-    if (JSON.stringify(note) === '{}') {
-      res.status(400).json({
-        error: 'content is a required field'
+  const note = req.body;
+  if (JSON.stringify(note) === '{}') {
+    res.status(400).json({
+      error: 'content is a required field'
+    });
+  } else {
+    note.id = nextId;
+    const jsonFileNotes = jsonFile.notes;
+    jsonFileNotes[nextId] = note;
+    jsonFile.nextId++;
+    const toJSONString = JSON.stringify(jsonFile, null, '\t');
+    fs.writeFile('./data.json', toJSONString, err => {
+      if (err) {
+        res.status(500).json({ error: 'An unexpected error occurred.' });
+      } else {
+        res.status(201).json(note);
+      }
+    });
+  }
+});
+
+// handle delete req
+
+app.delete('/api/notes/:id', (req, res) => {
+  const parsedId = parseInt(req.params.id);
+  if (parsedId < 0) {
+    res.status(400).json({
+      error: 'id must be a positive integer'
+    });
+  } else {
+    const indexNum = notes.findIndex(note => note.id === parsedId);
+    if (indexNum === -1) {
+      res.status(404).json({
+        error: `cannot find note with id ${parsedId}`
       });
     } else {
-      note.id = nextId;
-      const jsonFileNotes = jsonFile.notes;
-      jsonFileNotes[nextId] = note;
-      jsonFile.nextId++;
+      notes.splice(indexNum, 1);
+      delete jsonFile.notes[JSON.stringify(parsedId)];
       const toJSONString = JSON.stringify(jsonFile, null, '\t');
       fs.writeFile('./data.json', toJSONString, err => {
-        if (err) throw err;
+        if (err) {
+          res.status(500).json({ error: 'An unexpected error occurred.' });
+        } else {
+          res.sendStatus(204);
+        }
       });
-      res.status(201).json(note);
     }
-  } else {
-    res.status(500).json({ error: 'An unexpected error occurred.' });
   }
+});
+
+// handle put request
+
+app.put('/api/notes/:id', (req, res) => {
+
 });
 
 app.listen(3000, () => {
