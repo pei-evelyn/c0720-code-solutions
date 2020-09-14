@@ -1,4 +1,4 @@
-import createElement from '../lib';
+import createElement from '../lib/index';
 
 export default class TodoList {
   constructor(onToggle) {
