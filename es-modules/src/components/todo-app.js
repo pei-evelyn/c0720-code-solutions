@@ -1,4 +1,4 @@
-import createElement, { noop } from '../lib/index';
+import { createElement, noop } from '../lib';
 import TodoList from './todo-list';
 import TodoForm from './todo-form';
 

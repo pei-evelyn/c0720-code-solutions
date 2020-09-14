@@ -1,4 +1,4 @@
-import createElement from '../lib/index';
+import { createElement } from '../lib/index';
 
 export default class TodoForm {
   constructor(onSubmit) {
