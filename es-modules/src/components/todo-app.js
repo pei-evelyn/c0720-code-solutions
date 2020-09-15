@@ -118,7 +118,8 @@ named id.
 
 Line 28: The boolean false is being assigned to the constant variable names isCompleted.
 
-Line 29: ???
+Line 29: The named objects of id, task, and iscompleted are being assigned to the
+constant variable named newTodo.
 
 Line 30: The concat method of the todos property of this object is being called
 passing in one argument the value stored in newTodo and the return value is being
@@ -133,13 +134,23 @@ Line 33: The closing curly brace to the addTodo method definition.
 Line 35: The toggleCompleted method is being defined with one parameter, todoId and
 the opening curly brace for the method definition.
 
-Line 36:
+Line 36: The map method of the todos property of the this objec is being called with
+one argument an anonymous arrow function. The anonymous arrow function is being defined
+with one parameter, todo. and the opening curly brace for the function. The return
+of the map method is being assidned to the todos property of the this object.
 
-Line 37:
+Line 37: There is an if statement checking the condition that the value stored in
+the id property of the todo object is NOT strictly equal to the value stored in
+todoId.  If true, the value stored in todo will be returned.
 
-Line 38:
+Line 38: The assign method of the Big O object is being called passing in there
+arguments, 1st an object literal, 2nd the value stored in todo, and 3rd an object
+literal with property value oppositie of the value stored in the isCompleted property of the todo
+object assigned to the iscompleted property of the object.  The return of this method
+call is being returned.
 
-Line 39:
+Line 39: The closing curly brace to the anonymous arrow function.  The closing parantheses
+to the map method call.
 
 Line 40: The update method of this object is being called with no arguments.
 
@@ -154,7 +165,9 @@ property of this object.
 Line 45: The append method of the container object of this object is being called passing
 in three arguments.
 
-Line 46:
+Line 46: The createelement method is being called passing in three arguments. 1st,
+the string 'h1', 2nd an object literal with property value'mb-4' set to property
+name class, 3rd the string 'JS Todo'.
 
 Line 47: The render method of the todoForm object of this object is being called
 with no arguments.
@@ -162,11 +175,12 @@ with no arguments.
 Line 48: The render method of the todoList object of this object is being called
 with one argument the value of todos property of this object.
 
-Line 49:
+Line 49: The closing parantheses to the append method call.
 
-Line 50:
+Line 50: The constant variable this is being destructured into nextId and todos.
 
-Line 51:
+Line 51: The onupdate method of the this object is being called, passing in one
+argument, the named objects nextId and todos.
 
 Line 52: The closing curly brace to the toggleCompleted method definition.
 
