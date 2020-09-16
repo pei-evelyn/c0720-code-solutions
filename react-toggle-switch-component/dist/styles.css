@@ -1,0 +1,39 @@
+.container {
+  position: relative;
+}
+
+.switch-base {
+  border-radius: 15px;
+  border: 2px solid black;
+  width: 40px;
+  height: 20px;
+  position: absolute;
+}
+
+.switch-top {
+  border-radius: 15px;
+  border: 2px solid black;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background-color: #f0fff0;
+}
+
+.on-bg {
+  background-color: #04b604;
+}
+
+.off-bg {
+  background-color: #c7c7c7;
+}
+
+.on-position {
+  left: 20px;
+}
+
+.text-position {
+  font-family: sans-serif;
+  position: absolute;
+  left: 50px;
+  margin: 4px;
+}
