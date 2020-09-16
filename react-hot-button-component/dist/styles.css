@@ -1,0 +1,35 @@
+button {
+  padding: 10px 20px;
+}
+
+.font-white {
+  color: #fff;
+}
+
+.font-gray {
+  color: #383838;
+}
+
+.purple {
+  background-color: #46006e;
+}
+
+.lavender {
+  background-color: #beacff;
+}
+
+.pink {
+  background-color: #fdabb9;
+}
+
+.orange {
+  background-color: #ffa500;
+}
+
+.yellow {
+  background-color: #fffb00;
+}
+
+.white {
+  background-color: #fff;
+}
