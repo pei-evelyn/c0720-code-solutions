@@ -1,0 +1,27 @@
+#root {
+  position: relative;
+}
+
+.stopwatch-outline {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: 5px solid black;
+  position: relative;
+}
+
+span {
+  position: absolute;
+  top: 115px;
+  left: 120px;
+  font-family: sans-serif;
+  font-size: 70px;
+  font-weight: 600;
+}
+
+i {
+  font-size: 45px;
+  position: relative;
+  left: 140px;
+  top: 20px;
+}
