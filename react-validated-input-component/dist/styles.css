@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 200px;
+  display: inline-block;
+  padding: 5px;
+}
+
+span {
+  display: inline-block;
+}
+
+i {
+  font-size: 18px;
+  margin: 5px 10px;
+}
+
+#root {
+  padding: 1rem;
+}
+
+.status-msg {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.hidden {
+  display: none;
+}
