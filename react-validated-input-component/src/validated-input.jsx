@@ -4,8 +4,7 @@ class ValidatedInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      letterCounter: 0
+      value: ''
     };
     this.pwPattern = /\w{8,}/;
     this.handleChange = this.handleChange.bind(this);
@@ -13,13 +12,12 @@ class ValidatedInput extends React.Component {
 
   handleChange(event) {
     this.setState({
-      value: event.target.value,
-      letterCounter: this.state.letterCounter + 1
+      value: event.target.value
     });
   }
 
   render() {
-    if (this.state.letterCounter === 0) {
+    if (this.state.value.length === 0) {
       return (
         <>
           <form>
@@ -34,7 +32,7 @@ class ValidatedInput extends React.Component {
           </div>
         </>
       );
-    } else if (this.state.letterCounter < 8) {
+    } else if (this.state.value.length < 8) {
       return (
         <>
           <form>
