@@ -37,14 +37,13 @@ class App extends React.Component {
       .then(res => res.json())
       .then(todo => this.setState(
         state => {
-          state.todos.push(todo);
-          return { todos: state.todos };
+          const newArr = state.todos.concat(todo);
+          return { todos: newArr };
         }))
       .catch(err => console.error(err));
   }
 
   toggleCompleted(todoId) {
-
     const todoIndex = this.state.todos.findIndex(todo => todo.id === todoId);
     const task = this.state.todos[todoIndex].task;
     const isCompleted = this.state.todos[todoIndex].isCompleted;
@@ -63,8 +62,9 @@ class App extends React.Component {
       .then(res => res.json())
       .then(todo =>
         this.setState(state => {
-          state.todos[todoIndex] = todo;
-          return { todos: state.todos };
+          const todosCopy = state.todos.slice();
+          todosCopy[todoIndex] = todo;
+          return { todos: todosCopy };
         }))
       .catch(err => console.error(err));
   }
