@@ -4,114 +4,126 @@ class Accordian extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'javascript'
+      isClosed: true,
+      htmlDisplay: 'hidden',
+      cssDisplay: 'hidden',
+      jsDisplay: 'hidden'
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleHtmlClick = this.handleHtmlClick.bind(this);
+    this.handleCssClick = this.handleCssClick.bind(this);
+    this.handleJsClick = this.handleJsClick.bind(this);
   }
 
-  handleClick(event) {
-    // const element = event.target;
-    if (this.state.view === 'html' ||
-      this.state.view === 'css' ||
-      this.state.view === 'javascript') {
-      this.setState({
-        view: 'closed'
+  handleHtmlClick() {
+    if (!this.state.isClosed) {
+      this.setState(state => {
+        return {
+          isClosed: !state.isClosed,
+          htmlDisplay: 'hidden',
+          cssDisplay: 'hidden',
+          jsDisplay: 'hidden'
+        };
       });
     }
 
-    // console.log(element.props);
-    // if (this.state.view === 'closed') {
-    //   this.setState({
-    //     view:
-    //   })
-    // }
+    if (this.state.isClosed) {
+      this.setState(state => {
+        return {
+          isClosed: !state.isClosed,
+          htmlDisplay: '',
+          cssDisplay: 'hidden',
+          jsDisplay: 'hidden'
+        };
+      });
+    }
+  }
+
+  handleCssClick() {
+    if (!this.state.isClosed) {
+      this.setState(state => {
+        return {
+          isClosed: !state.isClosed,
+          htmlDisplay: 'hidden',
+          cssDisplay: 'hidden',
+          jsDisplay: 'hidden'
+        };
+      });
+    }
+
+    if (this.state.isClosed) {
+      this.setState(state => {
+        return {
+          isClosed: !state.isClosed,
+          cssDisplay: '',
+          htmlDisplay: 'hidden',
+          jsDisplay: 'hidden'
+        };
+      });
+    }
+  }
+
+  handleJsClick() {
+    if (!this.state.isClosed) {
+      this.setState(state => {
+        return {
+          isClosed: !state.isClosed,
+          htmlDisplay: 'hidden',
+          cssDisplay: 'hidden',
+          jsDisplay: 'hidden'
+        };
+      });
+    }
+
+    if (this.state.isClosed) {
+      this.setState(state => {
+        return {
+          isClosed: !state.isClosed,
+          jsDisplay: '',
+          htmlDisplay: 'hidden',
+          cssDisplay: 'hidden'
+        };
+      });
+    }
   }
 
   render() {
-    if (this.state.view === 'closed') {
-      return (
-        <>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="html">Hypertext Markup Language</h2>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="css">Cascading Style Sheets</h2>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 value="javascript">JavaScript</h2>
-          </div>
-        </>
-      );
-    }
-    if (this.state.view === 'html') {
-      return (
-        <>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="html">Hypertext Markup Language</h2>
-          </div>
-          <div>
-            <p className="border-bottom-none">
+    return (
+      <>
+        <div onClick={this.handleHtmlClick}>
+          <h2 className="border-bottom-none" view="html">Hypertext Markup Language</h2>
+        </div>
+        <div className={this.state.htmlDisplay}>
+          <p className="border-bottom-none">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non labore
               velit veniam, eius saepe, quisquam distinctio deleniti optio maxime
               suscipit eveniet libero aliquam et tempora at reprehenderit cum,
               eligendi tenetur.
-            </p>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="css">Cascading Style Sheets</h2>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 value="javascript">JavaScript</h2>
-          </div>
-        </>
-      );
-    }
-    if (this.state.view === 'css') {
-      return (
-        <>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="html">Hypertext Markup Language</h2>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="css">Cascading Style Sheets</h2>
-          </div>
-          <div>
-            <p className="border-bottom-none">
+          </p>
+        </div>
+        <div onClick={this.handleCssClick}>
+          <h2 className="border-bottom-none" view="css">Cascading Style Sheets</h2>
+        </div>
+        <div className={this.state.cssDisplay}>
+          <p className="border-bottom-none">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non labore
+            velit veniam, eius saepe, quisquam distinctio deleniti optio maxime
+            suscipit eveniet libero aliquam et tempora at reprehenderit cum,
+            eligendi tenetur.
+          </p>
+        </div>
+        <div onClick={this.handleJsClick}>
+          <h2 view="javascript">JavaScript</h2>
+        </div>
+        <div className={this.state.jsDisplay}>
+          <p className="top-border-none">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non labore
               velit veniam, eius saepe, quisquam distinctio deleniti optio maxime
               suscipit eveniet libero aliquam et tempora at reprehenderit cum,
               eligendi tenetur.
-            </p>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 value="javascript">JavaScript</h2>
-          </div>
-        </>
-      );
-    }
-    if (this.state.view === 'javascript') {
-      return (
-        <>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="html">Hypertext Markup Language</h2>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="css">Cascading Style Sheets</h2>
-          </div>
-          <div onClick={this.handleClick}>
-            <h2 className="border-bottom-none" value="javascript">JavaScript</h2>
-          </div>
-          <div>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non labore
-              velit veniam, eius saepe, quisquam distinctio deleniti optio maxime
-              suscipit eveniet libero aliquam et tempora at reprehenderit cum,
-              eligendi tenetur.
-            </p>
-          </div>
-        </>
-      );
-    }
+          </p>
+        </div>
+      </>
+    );
   }
 }
 
