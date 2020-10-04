@@ -39,11 +39,3 @@ div {
 .hidden {
   display: none;
 }
-
-.border-bottom-none {
-  border-bottom: none;
-}
-
-.top-border-none {
-  border-top: none;
-}
