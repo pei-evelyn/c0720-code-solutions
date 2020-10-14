@@ -8,24 +8,21 @@ const topics = [
     content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non labore
               velit veniam, eius saepe, quisquam distinctio deleniti optio maxime
               suscipit eveniet libero aliquam et tempora at reprehenderit cum,
-              eligendi tenetur.`,
-    id: 'html'
+              eligendi tenetur.`
   },
   {
     name: 'Cascading Style Sheets',
     content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non labore
               velit veniam, eius saepe, quisquam distinctio deleniti optio maxime
               suscipit eveniet libero aliquam et tempora at reprehenderit cum,
-              eligendi tenetur.`,
-    id: 'css'
+              eligendi tenetur.`
   },
   {
     name: 'JavaScript',
     content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non labore
               velit veniam, eius saepe, quisquam distinctio deleniti optio maxime
               suscipit eveniet libero aliquam et tempora at reprehenderit cum,
-              eligendi tenetur.`,
-    id: 'js'
+              eligendi tenetur.`
   }
 ];
 
