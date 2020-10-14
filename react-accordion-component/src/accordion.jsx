@@ -19,8 +19,12 @@ class Topic extends React.Component {
   handleClick() {
     this.toggleClick();
     this.props.setView({
-      view: this.props.name
-    });
+      view: {
+        name: this.props.name,
+        hidden: true
+      }
+    }
+    );
   }
 
   toggleClick() {
@@ -30,22 +34,21 @@ class Topic extends React.Component {
   }
 
   render() {
-    const view = this.props.view;
-    const classHidden = view !== this.props.name ? 'hidden' : '';
+    if (this.props.view.name === this.props.name) {
+      return (
+        <>
+          <h2 onClick={() => this.handleClick()}>{this.props.name}</h2>
+          <p className={this.state.isClicked ? '' : 'hidden'}>{this.props.content}</p>
+        </>
+      );
+    }
+
     return (
       <>
         <h2 onClick={() => this.handleClick()}>{this.props.name}</h2>
-        <p className={classHidden}>{this.props.content}</p>
+        <p className={this.props.view.name !== this.props.name ? 'hidden' : ''}>{this.props.content}</p>
       </>
     );
-    // } else {
-    //   return (
-    //     <>
-    //       <h2 onClick={() => this.handleClick()}>{this.props.name}</h2>
-    //       <p className={this.state.isClicked ? '' : 'hidden'}>{this.props.content}</p>
-    //     </>
-    //   );
-    // }
 
   }
 }
@@ -55,7 +58,10 @@ class Accordian extends React.Component {
     super(props);
     this.state = {
       topics: [],
-      view: ''
+      view: {
+        name: '',
+        hidden: true
+      }
     };
     this.setView = this.setView.bind(this);
   }
