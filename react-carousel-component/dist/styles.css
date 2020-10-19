@@ -2,11 +2,12 @@
   height: 100vh;
 }
 
-.circle {
-  height: 8px;
-  width: 8px;
+.circle-outline {
+  height: 10px;
+  width: 10px;
   border: 2px solid black;
   border-radius: 50%;
+  margin: 0.3rem;
 }
 
 .filled {
@@ -26,9 +27,10 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  height: 90%;
 }
 
-.circle-row {
+.circle-col {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
 }

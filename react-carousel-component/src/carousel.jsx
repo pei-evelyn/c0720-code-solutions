@@ -26,12 +26,12 @@ class Carousel extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col">
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
+          <div className="col circle-col">
+            <div className="circle-outline"></div>
+            <div className="circle-outline"></div>
+            <div className="circle-outline"></div>
+            <div className="circle-outline"></div>
+            <div className="circle-outline"></div>
           </div>
         </div>
       </div>
