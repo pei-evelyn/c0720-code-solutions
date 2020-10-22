@@ -1,5 +1,18 @@
 import React from 'react';
 
+function Circles(props) {
+  const circles = props.pictures.map(picture => {
+    const id = picture.id;
+    return (
+      <div
+        key={picture.id}
+        className={props.pictureId === id ? 'circle-outline filled' : 'circle-outline'}
+      ></div>
+    );
+  });
+  return circles;
+}
+
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
@@ -66,11 +79,7 @@ class Carousel extends React.Component {
         </div>
         <div className="row">
           <div className="col circle-col">
-            <div className="circle-outline"></div>
-            <div className="circle-outline"></div>
-            <div className="circle-outline"></div>
-            <div className="circle-outline"></div>
-            <div className="circle-outline"></div>
+            <Circles pictures={this.state.pictures} pictureId={this.state.pictureId}/>
           </div>
         </div>
       </div>
