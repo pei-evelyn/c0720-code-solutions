@@ -1,13 +1,12 @@
 import React from 'react';
 
 function Circles(props) {
-  const circles = props.pictures.map(picture => {
-    const id = picture.id;
+  const circles = props.pictures.map((picture, index) => {
     return (
       <div
-        key={picture.id}
-        className={props.pictureId === id ? 'circle-outline filled' : 'circle-outline'}
-        onClick={props.pictureId < id ? props.handleNextIconClick : props.handleBackIconClick}
+        key={index}
+        className={props.currentIndex === index ? 'circle-outline filled' : 'circle-outline'}
+        onClick={props.currentIndex < index ? props.handleNextIconClick : props.handleBackIconClick}
       ></div>
     );
   });
@@ -18,7 +17,7 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pictureId: 1,
+      currentIndex: 0,
       pictures: []
     };
     this.handleBackIconClick = this.handleBackIconClick.bind(this);
@@ -36,13 +35,13 @@ class Carousel extends React.Component {
   }
 
   getPictureUrl() {
-    let result;
+    let imageUrl;
     for (let i = 0; i < this.state.pictures.length; i++) {
-      if (this.state.pictureId === this.state.pictures[i].id) {
-        result = this.state.pictures[i].imageUrl;
+      if (this.state.currentIndex === i) {
+        imageUrl = this.state.pictures[i];
       }
     }
-    return result;
+    return imageUrl;
   }
 
   startCounter() {
@@ -58,26 +57,24 @@ class Carousel extends React.Component {
 
   handleNextIconClick() {
     this.stopCounter();
-    const length = this.state.pictures.length;
+    const lastIndex = this.state.pictures.length - 1;
     this.setState(state => {
-      if (state.pictureId === length) {
-        const id = 1;
-        return { pictureId: id };
+      if (state.currentIndex === lastIndex) {
+        return { currentIndex: 0 };
       }
-      return { pictureId: state.pictureId + 1 };
+      return { currentIndex: state.currentIndex + 1 };
     });
     this.startCounter();
   }
 
   handleBackIconClick() {
     this.stopCounter();
-    const length = this.state.pictures.length;
+    const lastIndex = this.state.pictures.length - 1;
     this.setState(state => {
-      if (state.pictureId === 1) {
-        const id = length;
-        return { pictureId: id };
+      if (state.currentIndex === 0) {
+        return { currentIndex: lastIndex };
       }
-      return { pictureId: state.pictureId - 1 };
+      return { currentIndex: state.currentIndex - 1 };
     });
     this.startCounter();
   }
@@ -100,7 +97,7 @@ class Carousel extends React.Component {
           <div className="col circle-col">
             <Circles
               pictures={this.state.pictures}
-              pictureId={this.state.pictureId}
+              currentIndex={this.state.currentIndex}
               handleBackIconClick={this.handleBackIconClick}
               handleNextIconClick={this.handleNextIconClick}
             />
