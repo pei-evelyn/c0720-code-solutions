@@ -7,6 +7,7 @@ function Circles(props) {
       <div
         key={picture.id}
         className={props.pictureId === id ? 'circle-outline filled' : 'circle-outline'}
+        onClick={props.pictureId < id ? props.handleNextIconClick : props.handleBackIconClick}
       ></div>
     );
   });
@@ -24,6 +25,7 @@ class Carousel extends React.Component {
     this.handleNextIconClick = this.handleNextIconClick.bind(this);
     this.getPictureUrl = this.getPictureUrl.bind(this);
     this.startCounter = this.startCounter.bind(this);
+    this.stopCounter = this.stopCounter.bind(this);
   }
 
   componentDidMount() {
@@ -44,10 +46,18 @@ class Carousel extends React.Component {
   }
 
   startCounter() {
-    setInterval(this.handleNextIconClick, 3000);
+    const intervalId = setInterval(this.handleNextIconClick, 3000);
+    this.setState({
+      intervalId: intervalId
+    });
+  }
+
+  stopCounter() {
+    clearInterval(this.state.intervalId);
   }
 
   handleNextIconClick() {
+    this.stopCounter();
     const length = this.state.pictures.length;
     this.setState(state => {
       if (state.pictureId === length) {
@@ -56,9 +66,11 @@ class Carousel extends React.Component {
       }
       return { pictureId: state.pictureId + 1 };
     });
+    this.startCounter();
   }
 
   handleBackIconClick() {
+    this.stopCounter();
     const length = this.state.pictures.length;
     this.setState(state => {
       if (state.pictureId === 1) {
@@ -67,6 +79,7 @@ class Carousel extends React.Component {
       }
       return { pictureId: state.pictureId - 1 };
     });
+    this.startCounter();
   }
 
   render() {
@@ -85,7 +98,12 @@ class Carousel extends React.Component {
         </div>
         <div className="row">
           <div className="col circle-col">
-            <Circles pictures={this.state.pictures} pictureId={this.state.pictureId}/>
+            <Circles
+              pictures={this.state.pictures}
+              pictureId={this.state.pictureId}
+              handleBackIconClick={this.handleBackIconClick}
+              handleNextIconClick={this.handleNextIconClick}
+            />
           </div>
         </div>
       </div>
