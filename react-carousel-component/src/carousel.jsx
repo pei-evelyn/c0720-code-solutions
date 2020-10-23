@@ -23,12 +23,14 @@ class Carousel extends React.Component {
     this.handleBackIconClick = this.handleBackIconClick.bind(this);
     this.handleNextIconClick = this.handleNextIconClick.bind(this);
     this.getPictureUrl = this.getPictureUrl.bind(this);
+    this.startCounter = this.startCounter.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       pictures: this.props.images
     });
+    this.startCounter();
   }
 
   getPictureUrl() {
@@ -39,6 +41,10 @@ class Carousel extends React.Component {
       }
     }
     return result;
+  }
+
+  startCounter() {
+    setInterval(this.handleNextIconClick, 3000);
   }
 
   handleNextIconClick() {
